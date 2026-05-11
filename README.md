@@ -22,6 +22,9 @@ Libraries used:
 ---
 
 ## Dataset Information
+Dataset source:
+This project uses microbiome datasets from Zenodo:
+https://zenodo.org/records/15122187
 
 Files used:
 - taxonomic_table.csv.gz
