@@ -1,5 +1,5 @@
 from load_data import load_data
-
+from taxonomy_analysis import run_taxonomy_analysis
 from age_analysis import run_age_analysis
 from correlation_analysis import run_correlation_analysis
 from region_analysis import run_region_analysis
@@ -18,6 +18,12 @@ merged = run_age_analysis(
 
 # region analysis
 merged = run_region_analysis(
+    merged,
+    bacteria_columns
+)
+
+# taxonomy analysis
+merged = run_taxonomy_analysis(
     merged,
     bacteria_columns
 )

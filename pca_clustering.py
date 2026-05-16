@@ -11,9 +11,14 @@ def run_pca_clustering(
         bacteria_columns
 ):
 
+    sampled = merged.sample(
+        10000,
+        random_state=42
+    )
+
     print("\n========== PCA + CLUSTERING ==========\n")
 
-    X = merged[
+    X = sampled[
         bacteria_columns
     ].fillna(0)
 
@@ -27,15 +32,15 @@ def run_pca_clustering(
         X_scaled
     )
 
-    merged["PC1"] = pca_result[:, 0]
-    merged["PC2"] = pca_result[:, 1]
+    sampled["PC1"] = pca_result[:, 0]
+    sampled["PC2"] = pca_result[:, 1]
 
     plt.figure(figsize=(10, 6))
 
-    for region in merged["region"].unique():
+    for region in sampled["region"].unique():
 
-        subset = merged[
-            merged["region"] == region
+        subset = sampled[
+            sampled["region"] == region
         ]
 
         plt.scatter(
@@ -60,16 +65,16 @@ def run_pca_clustering(
         random_state=42
     )
 
-    merged["cluster"] = kmeans.fit_predict(
+    sampled["cluster"] = kmeans.fit_predict(
         X_scaled
     )
 
     plt.figure(figsize=(10, 6))
 
-    for cluster in merged["cluster"].unique():
+    for cluster in sampled["cluster"].unique():
 
-        subset = merged[
-            merged["cluster"] == cluster
+        subset = sampled[
+            sampled["cluster"] == cluster
         ]
 
         plt.scatter(
@@ -91,8 +96,8 @@ def run_pca_clustering(
     plt.show()
 
     cluster_region = pd.crosstab(
-        merged["cluster"],
-        merged["region"]
+        sampled["cluster"],
+        sampled["region"]
     )
 
     print("\nCluster vs Region:")

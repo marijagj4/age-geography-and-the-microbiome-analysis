@@ -7,11 +7,16 @@ def run_correlation_analysis(
         bacteria_columns
 ):
 
+    sampled = merged.sample(
+        5000,
+        random_state=42
+    )
+
     print("\n========== CORRELATION ANALYSIS ==========\n")
 
     top_bacteria = bacteria_columns[:10]
 
-    correlation_matrix = merged[
+    correlation_matrix = sampled[
         top_bacteria
     ].corr()
 

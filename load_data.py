@@ -19,8 +19,11 @@ def load_data():
         "taxonomic_table.csv.gz",
         compression="gzip",
         low_memory=False,
-        nrows=5000
     )
+    # taxonomy = taxonomy.sample(
+    #     n=50000,
+    #     random_state=42
+    # )
 
     taxonomy["srr"] = taxonomy["sample"].str.split("_").str[1]
 
