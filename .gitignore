@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+.idea/
+*.pyc
+.DS_Store
+
+taxonomic_table.csv.gz
+sample_metadata.tsv
+tags.tsv.gz
+sample_metadata (2).tsv
+tags (1).tsv.gz
